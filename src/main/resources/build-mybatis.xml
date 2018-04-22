@@ -60,7 +60,7 @@
         </javaClientGenerator>
         <!--生成对应表及类名 -->
         <table
-            tableName="%"
+            tableName="consult_content"
             enableCountByExample="true"
             enableUpdateByExample="true"
             enableDeleteByExample="true"
