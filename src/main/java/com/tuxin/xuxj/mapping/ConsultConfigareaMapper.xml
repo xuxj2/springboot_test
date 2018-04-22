@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuxin.xuxj.dao.ConsultConfigareaMapper" >
+  <resultMap id="BaseResultMap" type="com.tuxin.xuxj.bean.ConsultConfigarea" >
+    <id column="areaCode" property="areacode" jdbcType="VARCHAR" />
+    <result column="areaName" property="areaname" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    areaCode, areaName, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from consult_configarea
+    where areaCode = #{areacode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from consult_configarea
+    where areaCode = #{areacode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tuxin.xuxj.bean.ConsultConfigarea" >
+    insert into consult_configarea (areaCode, areaName, state
+      )
+    values (#{areacode,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tuxin.xuxj.bean.ConsultConfigarea" >
+    insert into consult_configarea
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areacode != null" >
+        areaCode,
+      </if>
+      <if test="areaname != null" >
+        areaName,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areacode != null" >
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tuxin.xuxj.bean.ConsultConfigarea" >
+    update consult_configarea
+    <set >
+      <if test="areaname != null" >
+        areaName = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where areaCode = #{areacode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tuxin.xuxj.bean.ConsultConfigarea" >
+    update consult_configarea
+    set areaName = #{areaname,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where areaCode = #{areacode,jdbcType=VARCHAR}
+  </update>
+</mapper>
